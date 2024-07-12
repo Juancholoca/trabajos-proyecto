@@ -11,32 +11,44 @@ void setup() {
   pinMode(RED_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
   pinMode(BLUE_PIN, OUTPUT);
+  pinMode(RED1_PIN, OUTPUT);
+  pinMode(GREEN1_PIN, OUTPUT);
+  pinMode(BLUE1_PIN, OUTPUT);
   
   Serial.begin(9600);
 }
 
 void loop() {
-  int potValue = analogRead(POTENTIOMETER_PIN); // Lee el valor del potenciómetro
-  int delayTime = map(potValue, 0, 1023, 50, 1000); // Mapea el valor del potenciómetro a un rango de velocidad de parpadeo
+  int potValue = analogRead(POTENTIOMETER_PIN);
+  int delayTime = map(potValue, 0, 1023, 50, 1000);
 
-  // Parpadeo del LED magenta
-  setColor(255, 0, 255); // Establece el color magenta
-  delay(delayTime); // Espera
-  setColor(0, 0, 0); // Apaga el LED
-  delay(delayTime); // Espera
+  analogWrite(RED_PIN, 255);
+  analogWrite(GREEN_PIN, 0);
+  analogWrite(BLUE_PIN, 255);
+  analogWrite(RED1_PIN, 255);
+  analogWrite(GREEN1_PIN, 0);
+  analogWrite(BLUE1_PIN, 255);
+  delay(delayTime);
+  analogWrite(RED_PIN, 0);
+  analogWrite(GREEN_PIN, 0);
+  analogWrite(BLUE_PIN, 0);
+  analogWrite(RED1_PIN, 0);
+  analogWrite(GREEN1_PIN, 0);
+  analogWrite(BLUE1_PIN, 0);
+  delay(delayTime);
 
-  // Parpadeo del LED amarillo
-  setColor(255, 255, 0); // Establece el color amarillo
-  delay(delayTime); // Espera
-  setColor(0, 0, 0); // Apaga el LED
-  delay(delayTime); // Espera
-}
-
-void setColor(int red, int green, int blue) {
-  analogWrite(RED_PIN, red);
-  analogWrite(GREEN_PIN, green);
-  analogWrite(BLUE_PIN, blue);
-  analogWrite(RED1_PIN, red);
-  analogWrite(GREEN1_PIN, green);
-  analogWrite(BLUE1_PIN, blue);
+  analogWrite(RED_PIN, 255);
+  analogWrite(GREEN_PIN, 255);
+  analogWrite(BLUE_PIN, 0);
+  analogWrite(RED1_PIN, 255);
+  analogWrite(GREEN1_PIN, 255);
+  analogWrite(BLUE1_PIN, 0);
+  delay(delayTime);
+  analogWrite(RED_PIN, 0);
+  analogWrite(GREEN_PIN, 0);
+  analogWrite(BLUE_PIN, 0);
+  analogWrite(RED1_PIN, 0);
+  analogWrite(GREEN1_PIN, 0);
+  analogWrite(BLUE1_PIN, 0);
+  delay(delayTime);
 }
