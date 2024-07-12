@@ -1,10 +1,10 @@
 #define PIR_PIN 2
-#define TRIG_PIN 3
-#define ECHO_PIN 4
-#define LED_R_PIN 5
-#define LED_G_PIN 6
-#define LED_B_PIN 7
-#define BUZZER_PIN 8
+#define TRIG_PIN 4
+#define ECHO_PIN 3
+#define LED_R_PIN 6
+#define LED_G_PIN 7
+#define LED_B_PIN 8
+#define BUZZER_PIN 5
 #define DISTANCE_THRESHOLD 100
 
 long duration;
