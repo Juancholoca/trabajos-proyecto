@@ -1,50 +1,73 @@
-const int buttonPin = 2;      // Pin del botón
-const int potPin = A0;        // Pin del potenciómetro
-const int numLeds = 11;       // Número de LEDs
-
-// Pines de los LEDs
-const int ledPins[numLeds] = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-
-bool sequenceActive = false;   // Estado de la secuencia (activa/inactiva)
-bool lastButtonState = HIGH;   // Último estado del botón (para detectar cambios)
-
-void setup() {
-  pinMode(buttonPin, INPUT_PULLUP); // Configura el botón con resistencia pull-up interna
-
-  // Configurar los pines de los LEDs como salida
-  for (int i = 0; i < numLeds; i++) {
-    pinMode(ledPins[i], OUTPUT);
-  }
+bool boton = false;
+//
+void setup()
+{
+  pinMode(2, OUTPUT);
+   pinMode(3, OUTPUT);
+   pinMode(4, OUTPUT);
+   pinMode(5, OUTPUT);
+   pinMode(6, OUTPUT);
+   pinMode(7, OUTPUT);
+   pinMode(8, OUTPUT);
+   pinMode(9, OUTPUT);
+   pinMode(10, OUTPUT);
+   pinMode(11, OUTPUT);
+   pinMode(12, INPUT_PULLUP);
+   pinMode(A0, INPUT);
 }
 
-void loop() {
-  // Leer el estado del botón
-  bool buttonState = digitalRead(buttonPin);
-
-  // Si el botón se presiona (cambio de HIGH a LOW)
-  if (buttonState == LOW && lastButtonState == HIGH) {
-    sequenceActive = !sequenceActive;  // Alterna el estado de la secuencia
-    delay(50);  // Anti-rebote
-  }
-
-  // Actualizar el último estado del botón
-  lastButtonState = buttonState;
-
-  // Leer el valor del potenciómetro y mapearlo a un rango de tiempo
-  int potValue = analogRead(potPin);
-  int delayTime = map(potValue, 0, 1023, 100, 1000);  // Rango de 100 ms a 1000 ms
-
-  // Ejecutar la secuencia si está activa
-  if (sequenceActive) {
-    for (int i = 0; i < numLeds; i++) {
-      digitalWrite(ledPins[i], HIGH);  // Encender el LED
-      delay(delayTime);  // Esperar un tiempo según el valor del potenciómetro
-      digitalWrite(ledPins[i], LOW);   // Apagar el LED
-    }
-  } else {
-    // Apagar todos los LEDs si la secuencia no está activa
-    for (int i = 0; i < numLeds; i++) {
-      digitalWrite(ledPins[i], LOW);
-    }
+void loop()
+{
+  if( digitalRead(12) == LOW)
+  {
+    boton = !boton;
+    
+    int tiempo = analogRead(A0);
+    
+    int x = map ( tiempo , 0 , 1023, 200, 1500);
+    
+    digitalWrite(2, HIGH);
+    delay(x); 
+    digitalWrite(3, HIGH);
+    digitalWrite(2, LOW);
+    delay(x);
+    digitalWrite(4, HIGH);
+    digitalWrite(3, LOW);
+    delay(x);
+    digitalWrite(5, HIGH);
+    digitalWrite(4, LOW);
+    delay(x);
+    digitalWrite(6, HIGH);
+    digitalWrite(5, LOW);
+    delay(x);
+    digitalWrite(7, HIGH);
+    digitalWrite(6, LOW);
+    delay(x);
+    digitalWrite(8, HIGH);
+    digitalWrite(7, LOW);
+    delay(x);
+    digitalWrite(9, HIGH);
+    digitalWrite(8, LOW);
+    delay(x);
+    digitalWrite(10, HIGH);
+    digitalWrite(9, LOW);
+    delay(x);
+    digitalWrite(11, HIGH);
+    digitalWrite(10, LOW);
+    delay(x);
+    digitalWrite(11, LOW);
+    delay(x);
+    
+    }else{
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(11, LOW);
   }
 }
